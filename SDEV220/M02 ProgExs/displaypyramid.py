@@ -7,9 +7,6 @@ Write a program that prompts the user to enter an integer from 1 to 15 and displ
         -- Using the same input number, also dissplay an  inverted triangle. 
 '''
 
-import math
-
-
 #       returns the base / longest row (for rightside up pyramid). 
 #       first list returned = every digit left of the center '1'; second list contains middle '1' -> end going right
 def row(input):
@@ -38,12 +35,15 @@ def printUpsideDown(rows):
 
 #       main function. gets input from user for number of rows. then calls functions and 
 def main():
-        inputRows = int(input("Enter the number of lines/rows to print: "))
-        print("Pyramid: \n\n")
-        printPyramid(inputRows)
+        inputRows = int(input("Enter the number of lines/rows to print (less than 15): "))
+        if(inputRows <= 15):
+                print("Pyramid: \n\n")
+                printPyramid(inputRows)
 
-        print("\n\n Upside down pyramid: \n\n")
-        printUpsideDown(inputRows)
+                print("\n\n Upside down pyramid: \n\n")
+                printUpsideDown(inputRows)
+        else:
+                print("Number of rows must be between 1 and 15")
 
 
 #       call main()

@@ -54,7 +54,7 @@ def displayDecreasing(num1,num2,num3):
 
 #   main function
 def main():
-    input1,input2,input3 = eval(input("Enter three numbers: "))
+    input1,input2,input3 = eval(input("Enter three numbers separated by commas(e.g. '1,2,3'): "))
     displayIncreasing(input1,input2,input3)
     displayDecreasing(input1,input2,input3)
 
