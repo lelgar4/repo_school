@@ -27,13 +27,14 @@ def main():
 
 #   check each char in str(input) for letters
         for c in str(inpState):
+#   if char is a letter, throw an error message and continue while loop
             if c.isalpha() == True:
                 print("ERROR!\nInput can ONLY contain integers.\nTry again.")
                 continue
 
 #   check if input is numeric and is between 0 and 511
         if inpState.isnumeric() == True and int(inpState) >=0 and int(inpState) <= 511:
-            break
+            break       #   break while loop if above is true
         else:
 #   display error message if user input is not 0-511, then repeat input statement
             print("ERROR!\nInput must be an integer 0 to 511, including 0 and 511.\nTry again.")
@@ -48,6 +49,8 @@ def main():
     for x in range(0,len(binaryList)):
         if isinstance(binaryList[x],str):
             binaryList[x] = int(binaryList[x])
+        else:
+            print("Unexpected Error -- converting to integers")
 
 #   while loop inserts 0's at list[0] index until there are 9 elements -- the number needed to display 3 x 3 matrix
 #   e.g. [1] -> [0,0,0,0,0,0,0,0,1]

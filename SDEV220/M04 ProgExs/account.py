@@ -4,7 +4,7 @@
     The Account class
     due 14 Sep 21
 
-Design a class named Accoutn that contains:
+Design a class named Account that contains:
     -- private int id (account id)
     -- private float balance
     -- private float annualInterestRate

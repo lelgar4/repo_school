@@ -18,7 +18,7 @@ def main():
     for x in range(0,10):               
         counts.append(0)    
             
-#   generate 1000 random ints 0-9, increment corresponding counter val in counts[]   
+#   for loop; generate 1000 random ints 0-9, increment corresponding counter val in counts[]   
     for i in range(0,1000):
         randNum = random.randint(0,9)
         counts[randNum] += 1        
@@ -35,4 +35,5 @@ def main():
         sum = sum + counts[j]
     print("\nTotal: ",sum)
 
+#   call main()
 main()
