@@ -2,7 +2,8 @@
     Richard Elgar
     SDEV220
     Game: Nine Heads and Tails
-    Due:
+    Due: 19 Oct 21
+    
 Nine coins are placed in a matrix with some face up and some face down. You can represent the state of the coins with the values 0 (heads) and 1 (tails). 
 
 EX:     0 0 0       1 0 1

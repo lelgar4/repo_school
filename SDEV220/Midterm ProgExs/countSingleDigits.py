@@ -2,7 +2,7 @@
     Richard Elgar
     SDEV220
     Count Single Digits
-    Due:
+    Due: 19 Oct 21
 
 Write a program that generates 1,000 random integers between 0 and 9 and displays the count for each number. 
     Hint: Use a list of ten integers, say counts, to store the counts for the number of 0s, 1s, ..., 9s.)
