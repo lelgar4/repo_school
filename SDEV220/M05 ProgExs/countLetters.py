@@ -38,7 +38,7 @@ class countLetters():
         frameInput.pack()
         Label(frameInput,text="Enter file name: ").pack(side=LEFT)
         self.inputFileName = StringVar()
-        entryFileName = Entry(frameInput,width=25,textvariable=self.inputFileName).pack(side=LEFT)
+        entryFileName = Entry(frameInput,width=60,textvariable=self.inputFileName).pack(side=LEFT)
         btnBrowse = Button(frameInput,text="Browse",command=self.browseFiles).pack(side=LEFT)
         btnShowResult = Button(frameInput,text="Show Result",command=self.showResult).pack(side=LEFT)
 
