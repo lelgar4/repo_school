@@ -25,7 +25,7 @@ class countLetters():
         window = Tk()
         window.title("countLetters.py")
 
-#   frame + canvas for results histogram
+#   frame for canvas for results histogram
         frameCanvas = Frame(window)
         frameCanvas.pack()
         self.histogramCanvas = Canvas(frameCanvas,width=700,height=400)
@@ -47,17 +47,21 @@ class countLetters():
 #   iterates characters in a line read from a file; counts occurrences of each letter, a-z
     def getLetterCounts(self,line):
         try:
-            for char in line:
-                if str(char).isalpha():
+#   foreach character in a line, if the character is a letter, increment that letters index in list 'counts'
+            for char in line:                   
+                if str(char).isalpha():         
                     self.counts[ord(char) - ord('a')] += 1
 
+#   foreach value in list 'counts' if value is less than 0 or not an instance of Integer, then it is invalid; throw exception
             for ct in self.counts:
                 if ct < 0 or isinstance(ct,int) == False:
                     raise ValueError("ERROR: INVALID COUNT VALUE!")
         
+#   ignore indexOutOfBounds exceptions when iterating lines
         except IndexError:
             pass
 
+#   ValueError/invalidCountValue Exception displays messagebox error message
         except ValueError as invalidCountValue:
             tkinter.messagebox.showerror("ERROR! INVALID COUNT VALUE\nOccurrence values for each letter must be integers, greater than or equal to 0.\nTry again.")
             print("-----------------------------------------------------")
@@ -67,43 +71,52 @@ class countLetters():
 
 #   displays histogram of occurrences of each letter in file
     def displayHistogram(self):
-        self.histogramCanvas.delete("tkHistogram")
+        self.histogramCanvas.delete("tkHistogram")      #   clear canvas of previous histogram
+        self.histogramCanvas.create_line(10,self.GRAPH_BASE,600,self.GRAPH_BASE,tag="tkHistogram")      #   create base-line for graph
+        histBarX1Counter = 20       #   counter var, tracks X(0) of next histo bar/X(1) of previous histobar
 
-        self.histogramCanvas.create_line(10,self.GRAPH_BASE,600,self.GRAPH_BASE,tag="tkHistogram")
-        histBarX1Counter = 20
+#   for each letter/index of 'counts' list: 
         for i in range(26):
+#   add corresponding letter below histobar/histograph baseline
             self.histogramCanvas.create_text(histBarX1Counter+2,self.GRAPH_BASE + 8,text=chr(i+ord('a')), tag="tkHistogram")
+
+#   draws a rectangle for current letter histo bar. 
             self.histogramCanvas.create_rectangle(histBarX1Counter-9,self.GRAPH_BASE - self.counts[i],histBarX1Counter + self.HISTO_BAR_WIDTH -9,self.GRAPH_BASE,tag="tkHistogram")
+
+#   increment histBarX1Counter by HISTO_BAR_WIDTH so next histo bar doesn't overlap
             histBarX1Counter += self.HISTO_BAR_WIDTH
 
                 
 #   calls askopenfilename, allows user to browse local directories to find a file instead of typing in the file's absolute path
     def browseFiles(self):
-        selectFile = askopenfilename()
-        self.inputFileName.set(selectFile)          #   set instance var inputFileName to file selected by user then call showResult()                         
+        selectFile = askopenfilename()              #   opens filedialoge / browser box from tkinter; selected file's path is set to 'selectFile'
+        self.inputFileName.set(selectFile)          #   set instance var inputFileName to file selected by user
+        self.showResult()                   
 
 
+#   opens target file; counts occurrences of each letter in file, then calls displayHistogram() 
     def showResult(self):
         if isfile(self.inputFileName.get().strip()) == True:                #   verify file name/path
-            inputFile = open(self.inputFileName.get().strip())              
-            listLines = inputFile.readlines()
-            self.counts = 26 * [0]
-            
-            linectr = 1
+            inputFile = open(self.inputFileName.get().strip())              #   open file
+            listLines = inputFile.readlines()                       #   create list 'listLines' each list index == a line from the file
+            self.counts = 26 * [0]                                  #   init 'counts' as list with 26 indicies
+
+#   foreach loop calls getLetterCounts() for each line of list 'listLines'
             for line in listLines:
-                print(linectr)
                 self.getLetterCounts(line.lower())
-                linectr += 1
             
+#   prints "[letter] :: [number of occurrences]" for each letter/index of 'counts' to the console
             ctCounter = 0
             for ct in self.counts:
                 print(chr(ord('a') + ctCounter), " :: ", str(ct))
                 ctCounter+=1
 
+#   call displayHistogram() func to display histogram in canvas.
             self.displayHistogram()
 
+#   display error messagebox; notifies user that the file they input was not found.
         else:
             tkinter.messagebox.showerror("ERROR!","File not found. Try again.")
     
-
+#   initialize program instance
 countLetters()
