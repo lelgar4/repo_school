@@ -1,5 +1,5 @@
 '''     
-        Creig Leu, Brandon Tussey, Richard Elgar
+        Richard Elgar
         SDEV 220
         Hangman Final Project v2
         15 Dec 21s
